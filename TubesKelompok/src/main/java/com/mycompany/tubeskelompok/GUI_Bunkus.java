@@ -201,6 +201,16 @@ public class GUI_Bunkus extends javax.swing.JFrame implements makanan {
         }
         return total;
     }
+    private int hargaHitung(javax.swing.JCheckBox[] checkboxes) {
+        int total = 0;
+        for (javax.swing.JCheckBox checkbox : checkboxes) {
+            if (checkbox.isSelected()) {
+                total += Integer.parseInt(checkbox.getText().replaceAll("\\D+", ""));
+            }
+        }
+        return total;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String pesanan = "";
