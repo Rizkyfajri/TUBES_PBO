@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.tubeskelompok;
-
+import javax.swing.JFrame;
 /**
  *
  * @author Fajri
@@ -46,6 +46,11 @@ public class GUI_Home extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setText("Bawa pulang");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +84,21 @@ public class GUI_Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        GUI_Ditempat ditempat = new GUI_Ditempat();
+        ditempat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ditempat.setLocationRelativeTo(null);
+        ditempat.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        GUI_Bunkus Bunkus = new GUI_Bunkus();
+        Bunkus.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Bunkus.setLocationRelativeTo(null);
+        Bunkus.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
