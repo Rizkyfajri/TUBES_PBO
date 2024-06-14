@@ -3,19 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.tubeskelompok;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author Fajri
  */
-public class GUI_Bunkus extends javax.swing.JFrame {
+public class GUI_Bunkus extends javax.swing.JFrame implements makanan {
 
     /**
      * Creates new form GUI_Bunkus
      */
+    private int hargatotal = 0;
+    private final javax.swing.JCheckBox[] makananCheck;
+    
     public GUI_Bunkus() {
         initComponents();
+        makananCheck = new javax.swing.JCheckBox[]{
+            jCheckBox1, jCheckBox2, jCheckBox3, jCheckBox4, jCheckBox5, jCheckBox6, jCheckBox7, jCheckBox8, jCheckBox9, jCheckBox10
+        };
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,6 +182,24 @@ public class GUI_Bunkus extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String pesanan = "";
+
+        StringBuilder pesanMakan = new StringBuilder();
+        hargatotal = hargaHitung(makananCheck, pesanMakan);
+
+        hargatotal *= 1000;
+
+        String namaPemesan = JOptionPane.showInputDialog("Nama: ");
+
+        pesanan += "Nama Pemesan: " + namaPemesan + "\n";
+        pesanan += "Menu: \n" + pesanMakan;
+        pesanan += "\nDine In/Takeaway: Dine In\n";
+        String alamatPemesan = JOptionPane.showInputDialog("Alamat: ");
+        pesanan += "Alamat Pesanan: " + alamatPemesan + "\n";
+        hargatotal += 3000;
+        pesanan += "Total Harga: Rp" + hargatotal + ",-";
+
+        makan(pesanan);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -214,6 +239,28 @@ public class GUI_Bunkus extends javax.swing.JFrame {
                 new GUI_Bunkus().setVisible(true);
             }
         });
+    }
+    @Override
+    public void makan(String pesanan) {
+        Object[] options = {"Keluar"};
+        int result = JOptionPane.showOptionDialog(null, pesanan, "Hasil Pesanan", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+        if (result == 0) {
+            for (java.awt.Window window : java.awt.Window.getWindows()) {
+                window.dispose();
+            }
+        }
+    }
+    private int hargaHitung(javax.swing.JCheckBox[] checkboxes, StringBuilder selectedItems) {
+        int total = 0;
+        for (javax.swing.JCheckBox checkbox : checkboxes) {
+            if (checkbox.isSelected()) {
+                selectedItems.append("\t* ").append(checkbox.getText()).append("\n");
+                total += Integer.parseInt(checkbox.getText().replaceAll("\\D+", ""));
+            }
+        }
+        return total;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
