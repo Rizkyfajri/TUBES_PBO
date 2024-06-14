@@ -179,7 +179,28 @@ public class GUI_Bunkus extends javax.swing.JFrame implements makanan {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    @Override
+    public void makan(String pesanan) {
+        Object[] options = {"Keluar"};
+        int result = JOptionPane.showOptionDialog(null, pesanan, "Hasil Pesanan", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
+        if (result == 0) {
+            for (java.awt.Window window : java.awt.Window.getWindows()) {
+                window.dispose();
+            }
+        }
+    }
+    private int hargaHitung(javax.swing.JCheckBox[] checkboxes, StringBuilder selectedItems) {
+        int total = 0;
+        for (javax.swing.JCheckBox checkbox : checkboxes) {
+            if (checkbox.isSelected()) {
+                selectedItems.append("\t* ").append(checkbox.getText()).append("\n");
+                total += Integer.parseInt(checkbox.getText().replaceAll("\\D+", ""));
+            }
+        }
+        return total;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String pesanan = "";
@@ -240,28 +261,7 @@ public class GUI_Bunkus extends javax.swing.JFrame implements makanan {
             }
         });
     }
-    @Override
-    public void makan(String pesanan) {
-        Object[] options = {"Keluar"};
-        int result = JOptionPane.showOptionDialog(null, pesanan, "Hasil Pesanan", JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-
-        if (result == 0) {
-            for (java.awt.Window window : java.awt.Window.getWindows()) {
-                window.dispose();
-            }
-        }
-    }
-    private int hargaHitung(javax.swing.JCheckBox[] checkboxes, StringBuilder selectedItems) {
-        int total = 0;
-        for (javax.swing.JCheckBox checkbox : checkboxes) {
-            if (checkbox.isSelected()) {
-                selectedItems.append("\t* ").append(checkbox.getText()).append("\n");
-                total += Integer.parseInt(checkbox.getText().replaceAll("\\D+", ""));
-            }
-        }
-        return total;
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
